@@ -5,18 +5,18 @@
 # What functionality does it provide?
 
 * Set a game object for the camera to follow
-** Enable/disable without losing the reference to the object
-** Use zoom-compatible displacement if you don't want exact centering
+   * Enable/disable without losing the reference to the object
+   * Use zoom-compatible displacement if you don't want exact centering
 * Set player zoom (touch control pinch / mouse wheel)
-** Set conditions for allowing zoom (always, never, when following object)
-** Set maximum/minimum allowed amount of zoom
-** Set zoom sensitivity for touch and mouse separately
+   * Set conditions for allowing zoom (always, never, when following object)
+   * Set maximum/minimum allowed amount of zoom
+   * Set zoom sensitivity for touch and mouse separately
 * Set backdrop
-** Set an image component as a static backdrop
-** Set values that manipulate both the base size of the backdrop as well as how much the backdrop size should change in relation to zoom.
+   * Set an `Image` component as a static backdrop
+   * Set values that manipulate both the base size of the backdrop as well as how much the backdrop size should change in relation to zoom
 * "Sweeping"
-** Set a state (position, rotation and/or zoom level AKA orthographic size) to transition to and a duration for how quickly to do it
-** Optionally send in an _Action_ to execute once the "sweep" is complete
+   * Set a state (position, rotation and/or zoom level AKA orthographic size) to transition to and a duration to set the speed
+   * Optionally send in an `Action` to execute once the "sweep" is complete
 
 # What versions does it work on?
 
@@ -34,9 +34,12 @@ The signature of the function is ..
 public void Sweep(OrthographicCameraState targetState, float duration, Action onFinish = null)
 ```
 
-.. so let's say we have a `GameObject` in the variable `boss`, we have the instance of the `Orthographic2DCameraController` attached to our main camera in the variable `cameraController`, and we have function that activates an animation where the boss character starts taunting the player character, `activateBossTauntAnimation()`.
+.. so let's say we have a scenario where we have the following:
+* a `GameObject` in the variable `boss`
+* the instance of the `Orthographic2DCameraController` that is attached to our main camera in the variable `cameraController`
+* a function `activateBossTauntAnimation()` that activates an animation where the boss character starts taunting the player character
 
-So the camera is currently following the player character, and then the boss character appears. What we want to do then is have the camera stop following the player character, sweep over to the boss character to an orthographic size of 10 while swinging the camera around 180 degrees in 1.5 seconds, then trigger the taunt animation function.
+So in this scenario the camera is currently following the player character, and then the boss character appears. What we want to do then is have the camera stop following the player character, sweep over to the boss character to an orthographic size of 10 while swinging the camera around 180 degrees in 1.5 seconds, then trigger the taunt animation function.
 
 What we would do then is the following:
 
